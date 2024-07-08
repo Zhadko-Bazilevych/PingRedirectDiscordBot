@@ -36,7 +36,7 @@ async def on_message(message):
     channel_id = message.channel.id
     if message.mentions and channel_id != PING_CHAT_ID and channel_id not in EXCLUDE_CHAT_IDS:
         action = PING_MESSAGE_WITH_TEXT_ACTION if remove_mentions(message.content) else PING_MESSAGE_ACTION
-        new_message = generate_message(NEW_MESSAGE_PATTERN, message.content, message.author.display_name)
+        new_message = generate_message(NEW_MESSAGE_PATTERN, message)
         match action:
             case ACTION.MOVE:
                 await message.delete()
