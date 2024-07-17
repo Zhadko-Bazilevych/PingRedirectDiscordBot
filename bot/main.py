@@ -1,10 +1,10 @@
+import os
 import discord
 from discord.ext import commands
 from utils import (
     remove_mentions,
     generate_message
     )
-from credentials import BOT_TOKEN
 from config import (
     ACTION,
     PING_CHAT_ID,
@@ -13,6 +13,8 @@ from config import (
     PING_MESSAGE_WITH_TEXT_ACTION,
     NEW_MESSAGE_PATTERN
 )
+
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 intents = discord.Intents.default()
 intents.reactions = True
