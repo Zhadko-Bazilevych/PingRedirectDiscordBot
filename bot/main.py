@@ -39,6 +39,13 @@ async def on_message(message):
     if not message.mentions or channel_id == PING_CHAT_ID or channel_id in EXCLUDE_CHAT_IDS:
         return
     
+    if ping_channel.permissions_for(message.author).read_messages == False:
+        return
+
+    for mention in message.mentions:
+         if ping_channel.permissions_for(mention).read_messages == False:
+             return
+    
     action = PING_MESSAGE_WITH_TEXT_ACTION if remove_mentions(message.content) else PING_MESSAGE_ACTION
     new_message = generate_message(NEW_MESSAGE_PATTERN, message)
     match action:
